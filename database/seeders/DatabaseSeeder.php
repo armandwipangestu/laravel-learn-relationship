@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Arman Dwi Pangestu',
             'username' => 'devnull',
             'email' => 'arman@exampple.net',
+            'vip' => true
         ]);
 
         Phone::create([

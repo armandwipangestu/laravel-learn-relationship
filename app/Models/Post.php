@@ -48,4 +48,11 @@ class Post extends Model
             $user->name = 'Guest Author';
         });
     }
+
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'user_id')->withDefault(function (User $user, Post $post) {
+            $user->name = 'Guest Author';
+        });
+    }
 }
