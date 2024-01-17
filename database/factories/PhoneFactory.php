@@ -17,7 +17,7 @@ class PhoneFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => mt_rand(1, 3),
+            'foreign_user_id' => mt_rand(1, 10),
             'phone' => fake()->phoneNumber()
         ];
     }

@@ -22,8 +22,10 @@ class User extends Authenticatable
         'name', 'username', 'email'
     ];
 
+    protected $primaryKey = 'user_id';
+
     public function phone(): HasOne
     {
-        return $this->hasOne(Phone::class);
+        return $this->hasOne(Phone::class, 'foreign_user_id', 'user_id');
     }
 }

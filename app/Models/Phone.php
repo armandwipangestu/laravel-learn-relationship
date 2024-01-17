@@ -11,9 +11,10 @@ class Phone extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $primaryKey = 'phone_id';
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'foreign_user_id', 'user_id');
     }
 }
