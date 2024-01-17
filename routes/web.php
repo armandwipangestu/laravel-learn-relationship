@@ -20,3 +20,4 @@ Route::get('/', function () {
 
 Route::get('/relation/one-to-one', [RelationController::class, 'oneToOne']);
 Route::get('/relation/one-to-many', [RelationController::class, 'oneToMany']);
+Route::get('/relation/default-model', [RelationController::class, 'defaultModel']);

@@ -21,4 +21,10 @@ class RelationController extends Controller
         $post = Post::with('comments')->where('post_id', $request->id)->first();
         return $post;
     }
+
+    public function defaultModel(Request $request)
+    {
+        $post = Post::find($request->number);
+        return $post->user;
+    }
 }
