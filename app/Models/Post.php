@@ -11,6 +11,7 @@ class Post extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $primaryKey = 'post_id';
 
     // a One to Many relationship is used to define relationships where a single model is the parent
     // to one or more child models. For example, a blog post may have an infinite number of comments.
@@ -18,6 +19,6 @@ class Post extends Model
     // on your eloquent model
     public function comments(): HasMany
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class, 'foreign_post_id', 'post_id');
     }
 }

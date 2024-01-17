@@ -11,6 +11,7 @@ class Comment extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $primaryKey = 'comment_id';
 
     // Now that we can access all of a post's comments, let's define a relationship to
     // allow a comment to access its parent post. To define the inverse of a hasMany
@@ -18,6 +19,6 @@ class Comment extends Model
     // belongsTo method:
     public function post(): BelongsTo
     {
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo(Post::class, 'foreign_post_id', 'post_id');
     }
 }

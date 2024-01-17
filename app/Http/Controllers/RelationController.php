@@ -18,7 +18,7 @@ class RelationController extends Controller
 
     public function oneToMany(Request $request)
     {
-        $post = Post::with('comments')->where('id', $request->id)->first();
+        $post = Post::with('comments')->where('post_id', $request->id)->first();
         return $post;
     }
 }
