@@ -24,6 +24,7 @@ class User extends Authenticatable
 
     protected $primaryKey = 'user_id';
 
+    // One to One Relationship
     public function phone(): HasOne
     {
         return $this->hasOne(Phone::class, 'foreign_user_id', 'user_id');

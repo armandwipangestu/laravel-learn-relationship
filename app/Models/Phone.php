@@ -13,6 +13,7 @@ class Phone extends Model
     protected $guarded = ['id'];
     protected $primaryKey = 'phone_id';
 
+    // One to One Invers Relationship A.K.A belongsTo
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'foreign_user_id', 'user_id');

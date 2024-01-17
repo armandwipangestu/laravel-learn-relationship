@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Phone>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comment>
  */
-class PhoneFactory extends Factory
+class CommentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,9 @@ class PhoneFactory extends Factory
     public function definition(): array
     {
         return [
-            'foreign_user_id' => mt_rand(2, 10),
-            'phone' => fake()->phoneNumber()
+            'post_id' => mt_rand(1, 20),
+            'user_id' => mt_rand(1, 4),
+            'comment' => fake()->paragraph()
         ];
     }
 }

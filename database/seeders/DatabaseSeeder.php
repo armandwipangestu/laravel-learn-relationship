@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\User;
+use App\Models\Phone;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,10 +21,16 @@ class DatabaseSeeder extends Seeder
             'email' => 'arman@exampple.net',
         ]);
 
+        Phone::create([
+            'foreign_user_id' => 1,
+            'phone' => '(+62) 812 4567 890'
+        ]);
+
         $this->call([
             UserSeeder::class,
             PhoneSeeder::class,
-            PostSeeder::class
+            PostSeeder::class,
+            CommentSeeder::class,
         ]);
     }
 }
