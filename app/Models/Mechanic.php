@@ -60,8 +60,15 @@ class Mechanic extends Model
         return $this->hasOne(Car::class, 'mechanic_id', 'id');
     }
 
+    // String based syntax
     public function owner()
     {
         return $this->through('cars')->has('owner');
+    }
+
+    // Dynamic syntax
+    public function owner2()
+    {
+        return $this->throughCars()->hasOwner();
     }
 }
