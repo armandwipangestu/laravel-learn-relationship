@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -41,13 +42,39 @@ class User extends Authenticatable
         return $this->hasOne(Order::class, 'user_id', 'user_id')->latestOfMany();
     }
 
+    // Likewise, you may define a method to retrieve the "oldest", or first, related model of
+    // a relationship:
     public function oldestOrder(): HasOne
     {
         return $this->hasOne(Order::class, 'user_id', 'user_id')->oldestOfMany();
     }
 
+    // By default, the `latestOfMany` and `oldestOfMany` methods will retrieve the latest or
+    // oldest related model based on the model's primary key, which must be sortable.
+    // However, sometimes you may wish to retrieve a single model from a larger
+    // relationship using a different sorting criteria.
+
+    // For example, using the `ofMany` method, you may retrieve the user's most expensive
+    // order. The `ofMany` method accepts the sortable column as its first argument and
+    // which aggregate function (`min` or `max`) to apply when querying for the related
+    // model:
+    // public function largestOrder(): HasOne
+    // {
+    //     return $this->hasOne(Order::class, 'user_id', 'user_id')->ofMany('price', 'max');
+    // }
+
+    // Converting "Many" Relationship to Has One Relationships
+    // Often, when retrieving a single model using the `latestOfMany`, `oldestOfMany`, or
+    // `ofMany` methods, you already have a "has many" relationship defined for the same model.
+    // For convenience, Laravel allows you to easily convert this relationship into a "has one"
+    // relationship by invoking the `one` method on the relationship:
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class, 'user_id', 'user_id');
+    }
+
     public function largestOrder(): HasOne
     {
-        return $this->hasOne(Order::class, 'user_id', 'user_id')->ofMany('price', 'max');
+        return $this->orders()->one()->ofMany('price', 'max');
     }
 }
