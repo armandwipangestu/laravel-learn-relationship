@@ -35,6 +35,9 @@ class DatabaseSeeder extends Seeder
             OrderSeeder::class,
             ProductSeeder::class,
             PriceSeeder::class,
+            MechanicSeeder::class,
+            CarSeeder::class,
+            OwnerSeeder::class
         ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mechanic;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\User;
@@ -72,5 +73,11 @@ class RelationController extends Controller
     {
         $product = Product::with('currentPricing')->find($request->id);
         return $product;
+    }
+
+    public function hasOneThrough(Request $request)
+    {
+        $mechanic = Mechanic::with('carOwner')->find($request->id);
+        return $mechanic;
     }
 }
