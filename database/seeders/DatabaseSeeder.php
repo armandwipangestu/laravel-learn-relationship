@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             PhoneSeeder::class,
             PostSeeder::class,
             CommentSeeder::class,
+            OrderSeeder::class
         ]);
     }
 }
