@@ -23,3 +23,4 @@ Route::get('/relation/one-to-many', [RelationController::class, 'oneToMany']);
 Route::get('/relation/default-model', [RelationController::class, 'defaultModel']);
 Route::get('/relation/where-belongs-to', [RelationController::class, 'whereBelongsTo']);
 Route::get('/relation/has-one-of-many', [RelationController::class, 'hasOneOfMany']);
+Route::get('/relation/advance-has-one-of-many', [RelationController::class, 'advanceHasOneOfMany']);

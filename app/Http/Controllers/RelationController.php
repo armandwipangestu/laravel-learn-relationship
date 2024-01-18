@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -65,5 +66,11 @@ class RelationController extends Controller
         $summary['largestOrder'] = $user->largestOrder;
 
         return $summary;
+    }
+
+    public function advanceHasOneOfMany(Request $request)
+    {
+        $product = Product::with('currentPricing')->find($request->id);
+        return $product;
     }
 }
