@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Mechanic;
 use App\Models\Post;
 use App\Models\Product;
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -79,5 +80,11 @@ class RelationController extends Controller
     {
         $mechanic = Mechanic::with('carOwner')->find($request->id);
         return $mechanic;
+    }
+
+    public function hasManyThrough(Request $request)
+    {
+        $project = Project::with(['environments', 'deployments'])->find($request->id);
+        return $project;
     }
 }

@@ -37,7 +37,10 @@ class DatabaseSeeder extends Seeder
             PriceSeeder::class,
             MechanicSeeder::class,
             CarSeeder::class,
-            OwnerSeeder::class
+            OwnerSeeder::class,
+            ProjectSeeder::class,
+            EnvironmentSeeder::class,
+            DeploymentSeeder::class
         ]);
     }
 }

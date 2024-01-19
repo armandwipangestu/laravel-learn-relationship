@@ -25,3 +25,4 @@ Route::get('/relation/where-belongs-to', [RelationController::class, 'whereBelon
 Route::get('/relation/has-one-of-many', [RelationController::class, 'hasOneOfMany']);
 Route::get('/relation/advance-has-one-of-many', [RelationController::class, 'advanceHasOneOfMany']);
 Route::get('/relation/has-one-through', [RelationController::class, 'hasOneThrough']);
+Route::get('/relation/has-many-through', [RelationController::class, 'hasManyThrough']);
