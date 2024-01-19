@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -76,5 +77,45 @@ class User extends Authenticatable
     public function largestOrder(): HasOne
     {
         return $this->orders()->one()->ofMany('price', 'max');
+    }
+
+    // Many to Many Relationships
+    // Many-to-many relations are slightly more complicated than `hasOne` and `hasMany`
+    // relationships. An example of a many-to-many relationship is a user that has many
+    // roles and those roles are also shared by other users in the application. For example,
+    // a user may be assigned the role of "Author" and "Editor"; however, those roles may
+    // also be assigned to other users as well. So, a user has many roles and a role has many
+    // users.
+    //
+    // To define this relationship, three database tables are needed: `users`, `roles`, and
+    // `role_user`. The `role_user` table is derived from the alphabetical order of the related
+    // model names and contains `user_id` and `role_id` columns. This table is used as an
+    // intermediate table linking the users and roles.
+    //
+    // Remember, since a role can belong to many users, we cannot simply place a `user_id`
+    // column on the `roles` table. This would mean that a role could only belong to a single
+    // user. In order to provide support for roles being assigned to multiple users, the `role_user`
+    // table is needed. We can summerize the relationship's table structure like so:
+    //
+    // users
+    //      id - integer
+    //      name - string
+    //
+    // roles
+    //      id - integer
+    //      name - string
+    //
+    // role_user
+    //      user_id - integer
+    //      role_id - intger
+    //
+    // Many-to-many relationships are defined by writing a method that returns the result
+    // of the `belongsToMany` method. The `belongsToMany` method is provided by the
+    // `Illuminate\Database\Eloquent\Model` base class that is used by all of your application's
+    // Eloquent models. For example, let's define a `roles` method on our `User` model. The
+    // first argument passed to this method is the name of the related model class:
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id')->orderBy('name');
     }
 }

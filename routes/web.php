@@ -26,3 +26,4 @@ Route::get('/relation/has-one-of-many', [RelationController::class, 'hasOneOfMan
 Route::get('/relation/advance-has-one-of-many', [RelationController::class, 'advanceHasOneOfMany']);
 Route::get('/relation/has-one-through', [RelationController::class, 'hasOneThrough']);
 Route::get('/relation/has-many-through', [RelationController::class, 'hasManyThrough']);
+Route::get('/relation/belongs-to-many', [RelationController::class, 'belongsToMany']);

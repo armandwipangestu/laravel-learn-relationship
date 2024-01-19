@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Arman Dwi Pangestu',
             'username' => 'devnull',
-            'email' => 'arman@exampple.net',
+            'email' => 'arman@example.net',
             'vip' => true
         ]);
 
@@ -40,7 +40,9 @@ class DatabaseSeeder extends Seeder
             OwnerSeeder::class,
             ProjectSeeder::class,
             EnvironmentSeeder::class,
-            DeploymentSeeder::class
+            DeploymentSeeder::class,
+            RoleSeeder::class,
+            RoleUserSeeder::class
         ]);
     }
 }

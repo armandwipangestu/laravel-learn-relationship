@@ -87,4 +87,10 @@ class RelationController extends Controller
         $project = Project::with(['environments', 'deployments'])->find($request->id);
         return $project;
     }
+
+    public function belongsToMany(Request $request)
+    {
+        $user = User::find($request->id)->with('roles')->orderBy('name')->get();
+        return $user;
+    }
 }
