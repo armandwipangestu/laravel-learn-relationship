@@ -2,15 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mechanic;
 use App\Models\Post;
+use App\Models\Role;
+use App\Models\User;
 use App\Models\Product;
 use App\Models\Project;
-use App\Models\User;
+use App\Models\Mechanic;
 use Illuminate\Http\Request;
 
 class RelationController extends Controller
 {
+    public function test(Request $request)
+    {
+        $user = User::find($request->id);
+        $data = [];
+
+        foreach ($user->roles as $role) {
+            $data[] = $role->pivot;
+        }
+
+        return $data;
+    }
+
     public function oneToOne(Request $request)
     {
         $user = User::with('phone')->where('username', $request->username)->first();
@@ -92,5 +105,29 @@ class RelationController extends Controller
     {
         $user = User::find($request->id)->with('roles')->orderBy('name')->get();
         return $user;
+    }
+
+    public function inversBelongsToMany(Request $request)
+    {
+        $role = Role::find($request->id)->with('users')->get();
+        return $role;
+    }
+
+    // Retrieving Intermediate Table Columns
+    // As you have already learned, working with many-to-many relations requires the
+    // presence of an intermediate table. Eloquent provides some very helpful ways of
+    // interacting with this table. For example, let's assume our `User` model has many
+    // `Role` models that is related to. After accessing this relationship, we may access
+    // the intermediate table using the `pivot` attribute on the models:
+    public function retrievingIntermediateModel(Request $request)
+    {
+        $user = User::find($request->id);
+        $data = [];
+
+        foreach ($user->roles as $role) {
+            $data[] = $role->role_user;
+        }
+
+        return $data;
     }
 }

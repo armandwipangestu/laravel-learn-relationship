@@ -116,6 +116,24 @@ class User extends Authenticatable
     // first argument passed to this method is the name of the related model class:
     public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id')->orderBy('name');
+        // return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id')->orderBy('name');
+
+        // `withPivot` method chaining is for extra attribute contains in intermediate table/model.
+        // Because by default, only the model keys will be present on the `pivot` attribute/model.
+        // in this case, default model will be return if not chaining method `withPivot` is:
+        //
+        // - user_id
+        // - role_id
+        //
+        // So if you want to get extra attribute from intermediate table like `created_at` or `updated_at`
+        // you need to passing argument on the method `withPivot`
+        // return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id')->orderBy('name')->withPivot('created_at', 'updated_at');
+
+        // Or you can simplify if you would like your intermediate table to have `created_at` and `updated_at`
+        // timestamps that are automatically maintained by Eloquent, call the `withTimestamps` method
+        // when defining the relationship
+        //
+        // You can customize of `pivot` attribute with method `as`
+        return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id')->orderBy('name')->as('role_user')->withTimestamps();
     }
 }

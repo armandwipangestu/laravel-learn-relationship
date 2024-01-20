@@ -18,6 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/relation/test', [RelationController::class, 'test']);
 Route::get('/relation/one-to-one', [RelationController::class, 'oneToOne']);
 Route::get('/relation/one-to-many', [RelationController::class, 'oneToMany']);
 Route::get('/relation/default-model', [RelationController::class, 'defaultModel']);
@@ -27,3 +28,5 @@ Route::get('/relation/advance-has-one-of-many', [RelationController::class, 'adv
 Route::get('/relation/has-one-through', [RelationController::class, 'hasOneThrough']);
 Route::get('/relation/has-many-through', [RelationController::class, 'hasManyThrough']);
 Route::get('/relation/belongs-to-many', [RelationController::class, 'belongsToMany']);
+Route::get('/relation/invers-belongs-to-many', [RelationController::class, 'inversBelongsToMany']);
+Route::get('/relation/retrieving-intermediate-model', [RelationController::class, 'retrievingIntermediateModel']);
