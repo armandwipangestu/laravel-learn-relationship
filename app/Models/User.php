@@ -136,4 +136,9 @@ class User extends Authenticatable
         // You can customize of `pivot` attribute with method `as`
         return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id')->orderBy('name')->as('role_user')->withTimestamps();
     }
+
+    public function podcasts(): BelongsToMany
+    {
+        return $this->belongsToMany(Podcast::class, 'podcast_user', 'user_id', 'podcast_id')->orderBy('name')->as('subscription')->withPivot('approved', 'priority')->withTimestamps();
+    }
 }

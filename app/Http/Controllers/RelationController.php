@@ -130,4 +130,17 @@ class RelationController extends Controller
 
         return $data;
     }
+
+    public function customizingPivotAttributeName(Request $request)
+    {
+        $users = User::with('podcasts')->get();
+        // dd($users);
+        $data = [];
+
+        foreach ($users->flatMap->podcasts as $podcast) {
+            $data[] = $podcast->subscription;
+        }
+
+        return $data;
+    }
 }

@@ -42,7 +42,9 @@ class DatabaseSeeder extends Seeder
             EnvironmentSeeder::class,
             DeploymentSeeder::class,
             RoleSeeder::class,
-            RoleUserSeeder::class
+            RoleUserSeeder::class,
+            PodcastSeeder::class,
+            PodcastUserSeeder::class
         ]);
     }
 }

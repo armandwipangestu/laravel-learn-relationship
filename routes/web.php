@@ -30,3 +30,4 @@ Route::get('/relation/has-many-through', [RelationController::class, 'hasManyThr
 Route::get('/relation/belongs-to-many', [RelationController::class, 'belongsToMany']);
 Route::get('/relation/invers-belongs-to-many', [RelationController::class, 'inversBelongsToMany']);
 Route::get('/relation/retrieving-intermediate-model', [RelationController::class, 'retrievingIntermediateModel']);
+Route::get('/relation/customizing-pivot-attribute-name', [RelationController::class, 'customizingPivotAttributeName']);
